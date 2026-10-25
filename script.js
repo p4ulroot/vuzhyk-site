@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const startDownload = async (downloadType) => {
         try {
             // Get latest release info from GitHub API
-            const response = await fetch('https://api.github.com/repos/Grossbeak/Vuzhyk/releases/latest');
+            const response = await fetch('https://api.github.com/repos/p4ulroot/Vuzhyk/releases/latest');
             const release = await response.json();
             
             let downloadUrl = '';
@@ -179,12 +179,12 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 console.error(`File ${fileName} not found in latest release`);
                 // Fallback to releases page
-                window.open('https://github.com/Grossbeak/Vuzhyk/releases/latest', '_blank');
+                window.open('https://github.com/p4ulroot/Vuzhyk/releases/latest', '_blank');
             }
         } catch (error) {
             console.error('Error fetching release info:', error);
             // Fallback to releases page
-            window.open('https://github.com/Grossbeak/Vuzhyk/releases/latest', '_blank');
+            window.open('https://github.com/p4ulroot/Vuzhyk/releases/latest', '_blank');
         }
     };
     
@@ -302,15 +302,54 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Close demo modal functions
+    const demoVideo = document.getElementById('demoVideo');
+    const demoVideoBase = 'https://www.youtube.com/embed/uuezZndXH4A?rel=0';
+    const demoVideoYoutube = document.getElementById('demoVideoYoutube');
+    const demoVideoLocal = document.getElementById('demoVideoLocal');
+    const localDemoVideo = document.getElementById('localDemoVideo');
+    const demoFallbackLink = document.getElementById('demoFallbackLink');
+
     const closeDemoModal = () => {
         demoModal.classList.remove('active');
         document.body.style.overflow = '';
+        // Останавливаем видео при закрытии, сбрасывая src
+        if (demoVideo) {
+            demoVideo.src = demoVideoBase;
+        }
+        if (localDemoVideo) {
+            localDemoVideo.pause();
+        }
     };
-    
+
     const openDemoModal = () => {
         demoModal.classList.add('active');
         document.body.style.overflow = 'hidden';
+        // Всегда показываем YouTube-плеер при открытии (состояние не запоминается)
+        if (demoVideoYoutube) demoVideoYoutube.hidden = false;
+        if (demoVideoLocal) demoVideoLocal.hidden = true;
+        if (localDemoVideo) {
+            localDemoVideo.pause();
+            localDemoVideo.currentTime = 0;
+        }
+        // Автовоспроизведение при открытии
+        if (demoVideo && !demoVideo.src.includes('autoplay=1')) {
+            demoVideo.src = demoVideoBase + '&autoplay=1';
+        }
     };
+
+    // Переключение на локальный встроенный плеер
+    if (demoFallbackLink) {
+        demoFallbackLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Останавливаем YouTube
+            if (demoVideo) {
+                demoVideo.src = demoVideoBase;
+            }
+            // Показываем локальный плеер вместо YouTube
+            if (demoVideoYoutube) demoVideoYoutube.hidden = true;
+            if (demoVideoLocal) demoVideoLocal.hidden = false;
+        });
+    }
     
     // Close demo modal events
     if (demoModalClose) {

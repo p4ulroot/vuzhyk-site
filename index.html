@@ -142,13 +142,13 @@
                         <h4>Продукт</h4>
                         <a href="#features">Возможности</a>
                         <a href="#download">Скачать</a>
-                        <a href="https://github.com/Grossbeak/Vuzhyk/releases" target="_blank">Changelog</a>
+                        <a href="https://github.com/p4ulroot/Vuzhyk/releases" target="_blank">Changelog</a>
                     </div>
                     <div class="link-group">
                         <h4>Поддержка</h4>
-                        <a href="https://github.com/Grossbeak/Vuzhyk/wiki" target="_blank">Wiki</a>
-                        <a href="https://github.com/Grossbeak/Vuzhyk" target="_blank">Github</a>
-                        <a href="https://github.com/Grossbeak/Vuzhyk/issues" target="_blank">Issues</a>
+                        <a href="https://github.com/p4ulroot/Vuzhyk/wiki" target="_blank">Wiki</a>
+                        <a href="https://github.com/p4ulroot/Vuzhyk" target="_blank">Github</a>
+                        <a href="https://github.com/p4ulroot/Vuzhyk/issues" target="_blank">Issues</a>
                     </div>
                     <div class="link-group">
                         <h4>Разработчик</h4>
@@ -203,25 +203,26 @@
                 <h3>Демонстрация Vuzhyk IDE</h3>
                 <button class="modal-close" id="demoModalClose">&times;</button>
             </div>
-            <div class="modal-body">
-                <div class="demo-message">
-                    <div class="demo-icon">🎬</div>
-                    <h4>Демо временно недоступно</h4>
-                    <p>Мы работаем над созданием интерактивной демонстрации Vuzhyk IDE. Пока что вы можете:</p>
-                    <div class="demo-alternatives">
-                        <a href="https://github.com/Grossbeak/Vuzhyk" target="_blank" class="demo-link">
-                            <span class="link-icon">📖</span>
-                            Изучить документацию
-                        </a>
-                        <a href="https://github.com/Grossbeak/Vuzhyk/releases/latest" target="_blank" class="demo-link">
-                            <span class="link-icon">⬇️</span>
-                            Скачать и попробовать
-                        </a>
-                        <a href="https://github.com/Grossbeak/Vuzhyk/wiki" target="_blank" class="demo-link">
-                            <span class="link-icon">📚</span>
-                            Посмотреть примеры
-                        </a>
-                    </div>
+            <div class="modal-body demo-modal-body">
+                <div class="demo-video" id="demoVideoYoutube">
+                    <iframe
+                        id="demoVideo"
+                        src="https://www.youtube.com/embed/uuezZndXH4A?rel=0"
+                        title="Демонстрация Vuzhyk IDE"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="demo-video demo-video-local" id="demoVideoLocal" hidden>
+                    <video id="localDemoVideo" controls playsinline preload="metadata">
+                        <source src="videos/vuzhyk_promo.mp4" type="video/mp4">
+                        Ваш браузер не поддерживает воспроизведение видео.
+                    </video>
+                </div>
+                <div class="demo-fallback">
+                    <a href="#" id="demoFallbackLink" title="У вас не работает видео? Нажмите сюда чтобы перейти на встроеный плеер сайта.">Не работает видео?</a>
                 </div>
             </div>
         </div>
